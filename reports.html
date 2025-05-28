@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reports</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Reports</h1>
+    <nav>
+      <a href="index.html">Dashboard</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="orders.html">Orders</a>
+      <a href="receiving.html">Receiving</a>
+      <a href="reports.html" class="active">Reports</a>
+      <a href="users.html">Users</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="report-section">
+      <h2>Analytics Overview</h2>
+
+      <div class="charts-grid">
+        <div class="chart-box">
+          <h3>Top Moving Items</h3>
+          <img src="https://via.placeholder.com/300x200?text=Top+Items+Chart" alt="Top Items Chart" />
+        </div>
+
+        <div class="chart-box">
+          <h3>Inventory Turnover</h3>
+          <img src="https://via.placeholder.com/300x200?text=Turnover+Rate+Chart" alt="Turnover Rate Chart" />
+        </div>
+
+        <div class="chart-box">
+          <h3>Low Stock Warnings</h3>
+          <ul class="warning-list">
+            <li>Item A – Only 5 left!</li>
+            <li>Item C – Critical low</li>
+            <li>Item F – Needs reorder</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+    <!-- Add this just before the closing </body> tag -->
+<script src="script.js"></script>
+
+</body>
+</html>

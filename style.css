@@ -1,0 +1,333 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base Styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background-color: #2c3e50;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+header h1 {
+  margin-bottom: 10px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  background-color: #34495e;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #1abc9c;
+}
+
+nav a.active {
+  background-color: #1abc9c;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* Summary Cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background-color: white;
+  border-left: 5px solid #3498db;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 16px;
+}
+
+/* Image Cards for Inventory */
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+.inventory-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+.inventory-card:hover {
+  transform: scale(1.03);
+}
+.inventory-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px 8px 0 0;
+}
+/* Wrap for content and buttons at the bottom */
+.inventory-card-content {
+  flex: 1 1 auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Button group at the bottom */
+.inventory-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding: 0 15px;
+}
+
+.inventory-card button {
+  padding: 7px 18px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2980b9;
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.inventory-card button.danger {
+  background-color: #c0392b;
+}
+
+.inventory-card button:hover {
+  background: #1abc9c;
+}
+
+.inventory-card button.danger:hover {
+  background: #e74c3c;
+}
+
+.image-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.image-card:hover {
+  transform: scale(1.03);
+}
+
+.image-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.image-card .info {
+  padding: 15px;
+}
+
+.image-card .info h3 {
+  margin-bottom: 5px;
+}
+
+.image-card .info p {
+  margin-bottom: 10px;
+}
+
+.image-card .info button {
+  padding: 8px 12px;
+  border: none;
+  background-color: #2980b9;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.image-card .info button:hover {
+  background-color: #1abc9c;
+}
+
+/* Table Styles (Users, Orders) */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #2980b9;
+  color: white;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 6px 10px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #27ae60;
+}
+
+.delete-btn {
+  background-color: #c0392b;
+}
+
+.edit-btn:hover {
+  background-color: #2ecc71;
+}
+
+.delete-btn:hover {
+  background-color: #e74c3c;
+}
+
+/* Receiving Page Form */
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+form input,
+form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #1abc9c;
+}
+
+/* Charts and Reports */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.chart-box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.chart-box img {
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.chart-placeholder img {
+  width: 620px;      /* adjust this value for smaller/larger charts */
+  height: 500px;     /* consistent height for all charts */
+  object-fit: contain; /* keeps chart content visible and tidy */
+  display: block;
+  margin: 10px auto 0 auto; /* center the image horizontally */
+  border-radius: 6px;
+  background: #f4f6f9;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.warning-list li {
+  color: #c0392b;
+  font-weight: bold;
+  margin: 8px 0;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  width: 400px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
