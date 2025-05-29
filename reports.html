@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Reports</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
@@ -26,12 +28,12 @@
       <div class="charts-grid">
         <div class="chart-box">
           <h3>Top Moving Items</h3>
-          <img src="https://via.placeholder.com/300x200?text=Top+Items+Chart" alt="Top Items Chart" />
+          <canvas id="topItemsChart" width="300" height="200"></canvas>
         </div>
 
         <div class="chart-box">
           <h3>Inventory Turnover</h3>
-          <img src="https://via.placeholder.com/300x200?text=Turnover+Rate+Chart" alt="Turnover Rate Chart" />
+          <canvas id="turnoverChart" width="300" height="200"></canvas>
         </div>
 
         <div class="chart-box">
@@ -42,11 +44,99 @@
             <li>Item F – Needs reorder</li>
           </ul>
         </div>
+
+        <div class="chart-box">
+          <h3>Sales Performance</h3>
+          <canvas id="salesChart" width="300" height="200"></canvas>
+        </div>
+
+        <div class="chart-box">
+          <h3>Monthly Restock Summary</h3>
+          <ul class="summary-list">
+            <li>Item B – Restocked 3 times</li>
+            <li>Item D – Restocked once</li>
+            <li>Item E – Pending restock</li>
+          </ul>
+        </div>
       </div>
     </section>
   </main>
-    <!-- Add this just before the closing </body> tag -->
-<script src="script.js"></script>
 
+  <!-- Chart.js Logic -->
+  <script>
+    // Top Moving Items (Bar Chart)
+    new Chart(document.getElementById('topItemsChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Item A', 'Item B', 'Item C', 'Item D'],
+        datasets: [{
+          label: 'Units Sold',
+          data: [120, 90, 70, 40],
+          backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56', '#4BC0C0']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Top Moving Items'
+          }
+        }
+      }
+    });
+
+    // Inventory Turnover (Line Chart)
+    new Chart(document.getElementById('turnoverChart'), {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+        datasets: [{
+          label: 'Turnover Rate',
+          data: [3, 4.5, 2.8, 5, 4],
+          borderColor: '#36A2EB',
+          backgroundColor: 'rgba(54,162,235,0.2)',
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: true },
+          title: {
+            display: true,
+            text: 'Inventory Turnover Rate'
+          }
+        }
+      }
+    });
+
+    // Sales Performance (Pie Chart)
+    new Chart(document.getElementById('salesChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Electronics', 'Furniture', 'Apparel', 'Others'],
+        datasets: [{
+          label: 'Sales',
+          data: [300, 150, 100, 50],
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#9966FF']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Sales Performance by Category'
+          }
+        }
+      }
+    });
+  </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
+
