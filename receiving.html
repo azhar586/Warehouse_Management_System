@@ -22,7 +22,7 @@
   <main class="container">
     <section class="form-section">
       <h2>Record Incoming Stock</h2>
-      <form>
+      <form id="receivingForm">
         <label for="productName">Product Name:</label>
         <input type="text" id="productName" name="productName" required />
 
@@ -38,10 +38,92 @@
         <button type="submit">Submit</button>
       </form>
     </section>
-  </main>
-    <!-- Add this just before the closing </body> tag -->
-<script src="script.js"></script>
 
+    <section class="received-list">
+      <h2>Received Products</h2>
+      <ul id="productList"></ul>
+      <button id="exportBtn" style="margin-top: 15px;">Export to CSV</button>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('receivingForm');
+      const productList = document.getElementById('productList');
+      const exportBtn = document.getElementById('exportBtn');
+
+      let products = JSON.parse(localStorage.getItem('receivedProducts')) || [];
+
+      function saveToLocalStorage() {
+        localStorage.setItem('receivedProducts', JSON.stringify(products));
+      }
+
+      function renderProducts() {
+        productList.innerHTML = '';
+        products.forEach((product, index) => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <strong>${product.name}</strong> — Quantity: ${product.quantity}, Location: ${product.location}, Date: ${product.date}
+            <button class="delete-btn" data-index="${index}" style="margin-left: 10px;">Delete</button>
+          `;
+          productList.appendChild(li);
+        });
+      }
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const newProduct = {
+          name: document.getElementById('productName').value,
+          quantity: document.getElementById('quantity').value,
+          location: document.getElementById('location').value,
+          date: document.getElementById('date').value
+        };
+
+        products.push(newProduct);
+        saveToLocalStorage();
+        renderProducts();
+        form.reset();
+      });
+
+      productList.addEventListener('click', function(e) {
+        if (e.target.classList.contains('delete-btn')) {
+          const index = e.target.dataset.index;
+          products.splice(index, 1);
+          saveToLocalStorage();
+          renderProducts();
+        }
+      });
+
+      exportBtn.addEventListener('click', () => {
+        if (products.length === 0) {
+          alert('No products to export.');
+          return;
+        }
+
+        const csvHeader = 'Product Name,Quantity,Location,Date\n';
+        const csvRows = products.map(p =>
+          `"${p.name}","${p.quantity}","${p.location}","${p.date}"`
+        );
+        const csvContent = csvHeader + csvRows.join('\n');
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', 'received_products.csv');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+
+      renderProducts(); // Load saved products on page load
+    });
+  </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
+
 
